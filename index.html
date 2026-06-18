@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المطورون - تصميم احترافي</title>
+    <style>
+        /* ===== إعادة تعيين ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            direction: rtl;
+            background: #0a0a12;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== خلفية متحركة احترافية ===== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(72, 49, 212, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(225, 48, 108, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 0%, rgba(100, 140, 255, 0.05) 0%, transparent 50%);
+        }
+
+        /* جزيئات متحركة */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-duration: 18s; animation-delay: 0s; width: 6px; height: 6px; }
+        .particle:nth-child(2) { left: 25%; animation-duration: 22s; animation-delay: 2s; width: 3px; height: 3px; }
+        .particle:nth-child(3) { left: 40%; animation-duration: 20s; animation-delay: 4s; width: 5px; height: 5px; }
+        .particle:nth-child(4) { left: 55%; animation-duration: 25s; animation-delay: 1s; width: 4px; height: 4px; }
+        .particle:nth-child(5) { left: 70%; animation-duration: 19s; animation-delay: 3s; width: 7px; height: 7px; }
+        .particle:nth-child(6) { left: 85%; animation-duration: 23s; animation-delay: 5s; width: 3px; height: 3px; }
+        .particle:nth-child(7) { left: 50%; animation-duration: 21s; animation-delay: 2.5s; width: 5px; height: 5px; }
+        .particle:nth-child(8) { left: 15%; animation-duration: 24s; animation-delay: 4.5s; width: 4px; height: 4px; }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== البطاقة الرئيسية ===== */
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            padding: 60px 50px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+                0 0 80px rgba(100, 140, 255, 0.03);
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 60px 120px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 100px rgba(100, 140, 255, 0.06);
+        }
+
+        /* ===== شعار / أيقونة ===== */
+        .logo-icon {
+            display: inline-block;
+            font-size: 50px;
+            margin-bottom: 10px;
+            animation: pulseIcon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(100, 140, 255, 0.1));
+        }
+
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(5deg); }
+        }
+
+        /* ===== العنوان ===== */
+        .title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f0f4ff 0%, #a0b4ff 50%, #6c8cff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* ===== خط فاصل ===== */
+        .divider {
+            width: 60px;
+            height: 2px;
+            margin: 0 auto 40px;
+            background: linear-gradient(90deg, transparent, rgba(160, 180, 255, 0.3), transparent);
+            border-radius: 2px;
+        }
+
+        /* ===== بطاقات المطورين ===== */
+        .dev-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 25px 30px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .dev-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(160, 180, 255, 0.02), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .dev-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(160, 180, 255, 0.08);
+            transform: translateX(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dev-card:hover::after {
+            opacity: 1;
+        }
+
+        .dev-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .dev-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            background: rgba(160, 180, 255, 0.06);
+            border: 1px solid rgba(160, 180, 255, 0.06);
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .dev-card:hover .dev-avatar {
+            background: rgba(160, 180, 255, 0.1);
+            border-color: rgba(160, 180, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .dev-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .dev-role {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+
+        .dev-tag {
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .tag-founder {
+            background: rgba(160, 180, 255, 0.08);
+            color: #a0b4ff;
+            border: 1px solid rgba(160, 180, 255, 0.06);
+        }
+
+        .tag-partner {
+            background: rgba(225, 48, 108, 0.06);
+            color: #e6683c;
+            border: 1px solid rgba(225, 48, 108, 0.06);
+        }
+
+        /* ===== زر الإنستغرام ===== */
+        .instagram-wrapper {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            background-size: 300% 300%;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 8px 30px rgba(225, 48, 108, 0.2);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            animation: gradientMove 5s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            background-size: 300% 300%;
+            filter: blur(30px);
+            opacity: 0.3;
+            transition: opacity 0.5s;
+            animation: gradientMove 5s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .instagram-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(225, 48, 108, 0.4);
+        }
+
+        .instagram-btn:active {
+            transform: scale(0.97);
+        }
+
+        .instagram-btn .icon {
+            font-size: 22px;
+        }
+
+        /* ===== تذييل ===== */
+        .footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.06);
+            letter-spacing: 2px;
+        }
+
+        .footer span {
+            transition: color 0.3s;
+        }
+
+        .footer span:hover {
+            color: rgba(255, 255, 255, 0.15);
+            cursor: default;
+        }
+
+        /* ===== استجابة ===== */
+        @media (max-width: 700px) {
+            .card {
+                padding: 40px 25px;
+                border-radius: 30px;
+            }
+            .title {
+                font-size: 28px;
+                letter-spacing: 2px;
+            }
+            .subtitle {
+                font-size: 11px;
+                letter-spacing: 5px;
+            }
+            .dev-card {
+                padding: 18px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .dev-name {
+                font-size: 18px;
+            }
+            .dev-info {
+                width: 100%;
+            }
+            .dev-tag {
+                font-size: 10px;
+                padding: 3px 12px;
+            }
+            .instagram-btn {
+                padding: 14px 30px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 18px;
+                border-radius: 24px;
+            }
+            .title {
+                font-size: 22px;
+            }
+            .logo-icon {
+                font-size: 38px;
+            }
+            .dev-name {
+                font-size: 16px;
+            }
+            .dev-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .instagram-btn {
+                font-size: 13px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية متحركة -->
+    <div class="bg-animation"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- البطاقة الرئيسية -->
+    <div class="card">
+
+        <!-- أيقونة -->
+        <div class="logo-icon">⚡</div>
+
+        <!-- العنوان -->
+        <h1 class="title">المطورون</h1>
+        <p class="subtitle">فريق التطوير</p>
+        <div class="divider"></div>
+
+        <!-- المطور الأول -->
+        <div class="dev-card">
+            <div class="dev-info">
+                <div class="dev-avatar">👨‍💻</div>
+                <div>
+                    <div class="dev-name">ابو سيزار المنبجي</div>
+                    <div class="dev-role">مؤسس المشروع</div>
+                </div>
+            </div>
+            <span class="dev-tag tag-founder">مؤسس</span>
+        </div>
+
+        <!-- المطور الثاني -->
+        <div class="dev-card">
+            <div class="dev-info">
+                <div class="dev-avatar">👨‍💻</div>
+                <div>
+                    <div class="dev-name">هاشم العيسى</div>
+                    <div class="dev-role">شريك مؤسس</div>
+                </div>
+            </div>
+            <span class="dev-tag tag-partner">شريك</span>
+        </div>
+
+        <!-- زر الإنستغرام -->
+        <div class="instagram-wrapper">
+            <a href="https://www.instagram.com/ge_tar208" target="_blank" class="instagram-btn">
+                <span class="icon">📸</span>
+                تابعنا على إنستغرام
+                <span style="font-size:14px;opacity:0.6;">→</span>
+            </a>
+        </div>
+
+        <!-- تذييل -->
+        <div class="footer">
+            <span>✦ 2026 ✦</span>
+            <span>✦ جميع الحقوق محفوظة ✦</span>
+        </div>
+
+    </div>
+
+</body>
+  </html>
